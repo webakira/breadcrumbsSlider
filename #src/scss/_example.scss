@@ -1,0 +1,135 @@
+$EXmainColor: #333333;
+$EXsecondColor: #faaf52;
+._gray {
+	background-color: #f5f5f5;
+}
+.example {
+	.title {
+		font-weight: 700;
+		line-height: 1.3;
+		font-family: $fontfamily;
+		text-align: center;
+		margin: 0 0 50px 0;
+		color: $EXmainColor;
+		&__head {
+			text-transform: uppercase;
+			font-size: 32px;
+		}
+		&__sub {
+			color: rgba($color: $EXmainColor, $alpha: 0.7);
+			text-transform: unset;
+			font-weight: 400;
+			font-size: 18px;
+			span {
+				color: $EXsecondColor;
+			}
+		}
+	}
+}
+// TODO СПОЙЛЕРЫ
+body._pc {
+	.block._init {
+		.block__title {
+			&:hover {
+				color: #f5f5f5;
+			}
+		}
+		.block__title {
+			&:hover {
+				&:before,
+				&:after {
+					background-color: #f5f5f5;
+				}
+			}
+		}
+	}
+}
+.spoilers {
+	.block {
+		max-width: 800px;
+		margin: 0px auto 30px auto;
+		&__item {
+			background-color: $mainColor;
+			margin: 0px 0px 10px 0px;
+		}
+		&__title {
+			cursor: default;
+			width: 100%;
+			text-align: left;
+			font: 700 18px/1.3 $fontfamily;
+			background-color: transparent;
+			color: $secondColor;
+			padding: 10px;
+			position: relative;
+			transition: all 0.5s ease 0s;
+		}
+		&__body {
+			padding: 0px 10px 10px;
+			p {
+				font: 16px/1.3 $fontfamily;
+				color: #fff;
+			}
+		}
+		&._init {
+			.block {
+				&__title {
+					cursor: pointer;
+					padding: 10px 40px 10px 10px;
+					&:before,
+					&:after {
+						content: "";
+						width: 20px;
+						height: 1px;
+						content: "";
+						position: absolute;
+						top: 50%;
+						transition: all 0.5s ease 0s;
+						background-color: $secondColor;
+					}
+					&:before {
+						right: 16px;
+
+						transform: rotate(90deg) translateY(-8px);
+					}
+					&:after {
+						right: 0;
+
+						transform: rotate(0deg) translateX(-8px);
+					}
+					&._active {
+						&:before {
+							transform: rotate(0deg) translateY(0px);
+						}
+					}
+				}
+			}
+		}
+	}
+}
+// TODO [END] СПОЙЛЕРЫ
+
+.gallery {
+	&__sw-container {
+		overflow: hidden;
+	}
+
+	&__sw-wrapper {
+	}
+
+	&__sw-slide {
+		max-height: 500px;
+		display: flex;
+		align-items: stretch;
+	}
+
+	&__sw-img {
+		width: 100%;
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			display: block;
+			object-position: center center;
+		}
+	}
+}

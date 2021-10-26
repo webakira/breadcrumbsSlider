@@ -1,3 +1,7 @@
+function init() {
+	initBreadcrumbsSlider();
+}
+
 // TODO Хлебные крошки в виде слайдера
 function initBreadcrumbsSlider() {
 	let bradCrumbsSlider = new Swiper('.breadcrumbs-slider__area', {
@@ -19,5 +23,3 @@ function initBreadcrumbsSlider() {
 	}
 }
 // ? END Хлебные крошки в виде слайдера
-
-initBreadcrumbsSlider();
