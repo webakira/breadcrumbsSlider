@@ -92,4 +92,8 @@
 > > * gulpfile.js
 > > * package-lock.json
 > > * package.json
+<<<<<<< HEAD
 > > ---
+=======
+> > ---
+>>>>>>> f7df9523d2388fa285342f60734a38ba52a8fab1
