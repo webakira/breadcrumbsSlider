@@ -1,6 +1,7 @@
 // ? ============================================
 // ? Настройка основных путей
 let project_folder = "public";
+let short_folder = "dist";
 let source_folder = "#src";
 
 let fs = require('fs');
@@ -32,7 +33,23 @@ let path = {
 		js_plugins: source_folder + "/js/**/*.js",
 		img: source_folder + "/img/**/*.{jpg,png,svg,gif,ico,webp}",
 	},
+	short: {
+		html: short_folder + "/",
+		css: short_folder + "/scss/",
+		onlycss: short_folder + "/scss/plugins/",
+		js: short_folder + "/js/",
+		js_plugins: short_folder + "/js/plugins/",
+	},
+	shortSrc: {
+		html: [source_folder + "/*.html", "!" + source_folder + "/_*.html"],
+		css: [source_folder + "/scss/_element.scss", source_folder + "/scss/_element-theme.scss"],
+		onlycss: source_folder + "/scss/plugins/**/*.*",
+		js: source_folder + "/js/function.js",
+		js_plugins: source_folder + "/js/plugins/**/*.*",
+	},
+
 	clean: "./" + project_folder + "/",
+	cleanShort: "./" + short_folder + "/",
 }
 
 // ? ============================================
@@ -76,6 +93,13 @@ function html() {
 		.pipe(browsersync.stream())
 }
 
+function htmlShort() {
+	return src(path.shortSrc.html)
+		.pipe(fileinclude())
+		.pipe(dest(path.short.html))
+		.pipe(browsersync.stream())
+}
+
 // todo CSS Работаем с файлафи .scss затем выгружаем все в папку "project_folder/css"
 function css() {
 	return src(path.src.css)
@@ -107,6 +131,18 @@ function csscopy() {
 		.pipe(browsersync.stream())
 }
 
+function csscopyshort() {
+	return src(path.shortSrc.onlycss)
+		.pipe(dest(path.short.onlycss))
+		.pipe(browsersync.stream())
+}
+
+function csscopyshort2() {
+	return src(path.shortSrc.css)
+		.pipe(dest(path.short.css))
+		.pipe(browsersync.stream())
+}
+
 
 // todo JS Работаем с файлафи .JS затем выгружаем все в папку "project_folder/js"
 function js() {
@@ -124,6 +160,18 @@ function js() {
 function js_plugins() {
 	return src(path.src.js_plugins)
 		.pipe(dest(path.build.js_plugins))
+		.pipe(browsersync.stream())
+}
+
+function js_plugins_short() {
+	return src(path.shortSrc.js_plugins)
+		.pipe(dest(path.short.js_plugins))
+		.pipe(browsersync.stream())
+}
+
+function js_short() {
+	return src(path.shortSrc.js)
+		.pipe(dest(path.short.js))
 		.pipe(browsersync.stream())
 }
 
@@ -190,11 +238,20 @@ function watchFiles() {
 	gulp.watch([path.watch.js], js);
 	gulp.watch([path.watch.img], images);
 	gulp.watch([path.watch.onlycss], csscopy);
+
+	gulp.watch([path.watch.html], htmlShort);
+	gulp.watch([path.watch.css], csscopyshort);
+	gulp.watch([path.watch.css], csscopyshort2);
+	gulp.watch([path.watch.js], js_plugins_short);
+	gulp.watch([path.watch.js], js_short);
 }
 
 // todo DELET ALL Функция удаляет всю папку public
 function clean() {
 	return del(path.clean)
+}
+function cleanShort() {
+	return del(path.cleanShort)
 }
 
 // ? ============================================
@@ -203,8 +260,19 @@ function cb() {
 
 }
 
+let buildShort = gulp.series(cleanShort, gulp.parallel(htmlShort, csscopyshort, csscopyshort2, js_plugins_short, js_short, images));
+
 let build = gulp.series(clean, gulp.parallel(js_plugins, js, css, csscopy, html, fonts, images), fontsStyle);
-let watch = gulp.parallel(build, watchFiles, browserSync);
+let watch = gulp.parallel(build, watchFiles, browserSync, buildShort);
+
+
+
+exports.buildShort = buildShort;
+exports.htmlShort = htmlShort;
+exports.csscopyshort = csscopyshort;
+exports.csscopyshort2 = csscopyshort2;
+exports.js_plugins_short = js_plugins_short;
+exports.js_short = js_short;
 
 exports.csscopy = csscopy;
 exports.images = images;
