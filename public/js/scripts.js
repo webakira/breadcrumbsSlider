@@ -3,10 +3,10 @@
 function initScripts() {
 	document.removeEventListener('DOMContentLoaded', initScripts);
 	function init() {
-	initBreadcrumbsSlider();
-}
+		initBreadcrumbsSlider();
+	}
 
-// TODO Хлебные крошки в виде слайдера
+	// TODO Хлебные крошки в виде слайдера
 function initBreadcrumbsSlider() {
 	let bradCrumbsSlider = new Swiper('.breadcrumbs-slider__area', {
 		autoplay: false,
@@ -27,6 +27,7 @@ function initBreadcrumbsSlider() {
 	}
 }
 // ? END Хлебные крошки в виде слайдера
+
 	init();
 }
 document.addEventListener('DOMContentLoaded', initScripts);

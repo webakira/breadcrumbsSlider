@@ -2,7 +2,12 @@
 
 function initScripts() {
 	document.removeEventListener('DOMContentLoaded', initScripts);
-	@@include('_INIT.js')
+	function init() {
+		initBreadcrumbsSlider();
+	}
+
+	@@include('function.js')
+
 	init();
 }
 document.addEventListener('DOMContentLoaded', initScripts);
