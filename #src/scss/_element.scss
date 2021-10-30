@@ -1,23 +1,18 @@
-$breadcrumb_color_text: #2b2a29;
-$breadcrumb_color_text_hover: #2b2a29;
-$breadcrumb_delimiter: "/";
+// Основные настроки элемента, необходимые для его работы
+$breadcrumb_delimiter: "/"; // Разделитель хлебных крошек
+$background_color: #fff; // Фон, на котором расположен элемент
 @mixin breadcrumb_font {
 	font: 16px/20px $fontfamily;
 }
 
 .breadcrumbs-slider {
-	margin: 80px auto 0 auto;
-	position: relative;
-	display: flex;
-	height: 34px;
-	overflow: hidden;
-	@media (max-width: $md3 + px) {
-		margin: 50px auto 0 auto;
-	}
 	&__area {
-		padding: 0 0 0 80px;
+		padding: 0 0 0 90px;
 		width: 100%;
-		height: 100%;
+		position: relative;
+		display: flex;
+		height: 34px;
+		overflow: hidden;
 	}
 	&__list {
 		list-style: none;
@@ -27,7 +22,7 @@ $breadcrumb_delimiter: "/";
 	}
 
 	&__item {
-		color: $breadcrumb_color_text;
+		color: $mainColor;
 		padding-right: 20px;
 		width: auto;
 		display: inline-flex;
@@ -41,8 +36,8 @@ $breadcrumb_delimiter: "/";
 			top: 0;
 			left: 0;
 			padding: 0 20px 0 0;
-			background-color: #f5f5f5;
-			background: linear-gradient(90deg, #f5f5f5 0%, #f5f5f5 97%, rgba(255, 255, 255, 0) 100%);
+			background-color: $background_color;
+			background: linear-gradient(90deg, $background_color 0%, $background_color 97%, rgba(255, 255, 255, 0) 100%);
 			z-index: 2;
 		}
 
@@ -65,14 +60,14 @@ $breadcrumb_delimiter: "/";
 			}
 		}
 		&._active {
-			color: rgba($color: #2b2a29, $alpha: 0.7);
+			opacity: 0.7;
 		}
 		a {
-			color: $breadcrumb_color_text;
+			color: $mainColor;
 			@include breadcrumb_font();
 			transition: all 0.3s ease 0s;
 			&:hover {
-				color: $breadcrumb_color_text_hover;
+				color: $secondColor;
 				opacity: 0.7;
 			}
 		}

@@ -20,6 +20,7 @@ function initBreadcrumbsSlider() {
 			pagination: false,
 			initialSlide: countSlides(),
 			watchOverflow: true,
+			freeMode: true,
 		});
 		function countSlides() {
 			let slides, countSlides;
@@ -28,7 +29,7 @@ function initBreadcrumbsSlider() {
 			return countSlides;
 		}
 
-	}, 20);
+	}, 150);
 }
 // ? END Хлебные крошки в виде слайдера
 
