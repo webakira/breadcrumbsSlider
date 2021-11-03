@@ -2,7 +2,7 @@
 
 Хлебные крошки в виде слайдера с использованием swiper.js.
 
-[Ссылка на демо](https://webakira.github.io/breadcrumbsSlider/public/index.html)
+[Посмотреть демо](https://webakira.github.io/breadcrumbsSlider/public/index.html)
 
 > ## Структура GULP ##
 > ### Как запустить ###
